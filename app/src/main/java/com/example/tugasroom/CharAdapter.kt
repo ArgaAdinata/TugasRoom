@@ -29,7 +29,6 @@ class CharAdapter(
                     .centerCrop()
                     .into(imgChar)
 
-                // Observe favorite status
                 database?.charDao()?.isCharFavorite(data.artistName)?.observeForever { isFavorite ->
                     imgLove.setImageResource(
                         if (isFavorite) R.drawable.baseline_favorite_24
@@ -37,7 +36,6 @@ class CharAdapter(
                     )
                 }
 
-                // Handle favorite button click
                 imgLove.setOnClickListener {
                     Thread {
                         val dao = database?.charDao()

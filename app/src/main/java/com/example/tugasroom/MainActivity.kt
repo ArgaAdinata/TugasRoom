@@ -23,18 +23,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize database
         database = CharRoomDatabase.getDatabase(this)
 
-        // Setup RecyclerView
         binding.rvChar.layoutManager = GridLayoutManager(this, 2)
-
-        // Load data from API
         loadChars()
 
-        // Setup favorite button click
         binding.btnFavorite.setOnClickListener {
-            // Navigate to FavoriteActivity
             startActivity(Intent(this, FavoriteActivity::class.java))
         }
     }

@@ -22,15 +22,11 @@ class FavoriteActivity : AppCompatActivity() {
             finish()
         }
 
-        // Initialize database
         database = CharRoomDatabase.getDatabase(this)
 
-        // Setup RecyclerView
         binding.rvFavorite.layoutManager = GridLayoutManager(this, 2)
 
-        // Observe favorite characters
         database?.charDao()?.getAllChars()?.observe(this) { charEntities ->
-            // Convert CharEntity to Chars objects
             val favoriteChars = charEntities.map { entity ->
                 Chars(
                     artistName = entity.artistName,
@@ -39,7 +35,6 @@ class FavoriteActivity : AppCompatActivity() {
                 )
             }
 
-            // Set adapter with favorite characters
             val adapter = CharAdapter(
                 listChar = favoriteChars,
                 onClick = { char ->
